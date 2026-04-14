@@ -1,74 +1,116 @@
-const state = {
-    theme: localStorage.getItem('theme') || 'dark-theme',
-    misbahaCount: parseInt(localStorage.getItem('misbaha')) || 0,
-    content: null
-};
+// 1. نظام الثيم
+function toggleTheme() {
+    const body = document.body;
+    const isDark = body.classList.contains('dark-mode');
+    body.className = isDark ? 'light-mode' : 'dark-mode';
+    document.getElementById('theme-btn').innerText = isDark ? '🌙' : '☀️';
+    localStorage.setItem('theme', body.className);
+}
 
-// 1. نظام التنقل (Routing)
-async function navigateTo(page, params = '') {
+// 2. المحرك الأساسي: تحميل الصفحات (SPA)
+async function loadPage(pageName) {
     const app = document.getElementById('app');
-    app.innerHTML = '<div class="loader">جاري التحميل...</div>';
+    app.innerHTML = '<h3 style="text-align:center; color:var(--secondary); margin-top:50px;">جاري التحميل...</h3>';
 
     try {
-        const response = await fetch(`pages/${page}.html`);
-        const html = await response.text();
-        app.innerHTML = html;
+        const response = await fetch(`pages/${pageName}.html`);
+        if (!response.ok) throw new Error('Page not found');
+        app.innerHTML = await response.text();
 
-        // تشغيل دوال خاصة لكل صفحة
-        if (page === 'home') initHome();
-        if (page === 'section') renderSectionContent(params);
-        if (page === 'dashboard') initDashboard();
-    } catch (err) {
-        app.innerHTML = '<h2>عذراً، حدث خطأ في التحميل.</h2>';
+        // توجيه البيانات بناءً على الصفحة المحملة
+        if (pageName === 'sahaba') loadData('data/sahaba.json', renderCards);
+        else if (pageName === 'mazalim') loadData('data/mazalim.json', renderTimeline);
+        else if (pageName === 'research') loadData('data/research.json', renderArticles);
+        else if (['aqeeda', 'shubuhat', 'fadhail', 'daif', 'mukhalifeen'].includes(pageName)) {
+            loadContentSection(pageName);
+        }
+        else if (pageName === 'shia') initMisbaha();
+
+        window.scrollTo(0, 0);
+    } catch (error) {
+        app.innerHTML = `<div class="card"><h3 style="color:red">خطأ!</h3><p>تعذر تحميل الصفحة. تأكد من عملك على سيرفر (Live Server) أو GitHub Pages.</p></div>`;
     }
 }
 
-// 2. جلب البيانات من JSON
-async function getContent() {
-    if (!state.content) {
-        const res = await fetch('data/content.json');
-        state.content = await res.json();
+// 3. جلب البيانات
+async function loadData(url, renderCallback) {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        renderCallback(data);
+    } catch (error) {
+        console.error("Data load error", error);
     }
-    return state.content;
 }
 
-// 3. عرض محتوى الأقسام ديناميكياً
-async function renderSectionContent(sectionId) {
-    const data = await getContent();
-    const sectionData = data.sections[sectionId];
-    const container = document.getElementById('section-content');
-    
-    document.getElementById('section-title').innerText = sectionData.title;
-    
-    container.innerHTML = sectionData.items.map(item => `
-        <div class="card" style="background:var(--card-bg); padding:1.5rem; margin-bottom:1rem; border-radius:10px; border-right:5px solid var(--secondary)">
-            <h3>${item.subject}</h3>
-            <p>${item.body}</p>
-            <small>المصدر: ${item.source || 'غير محدد'}</small>
+async function loadContentSection(sectionKey) {
+    try {
+        const response = await fetch('data/content.json');
+        const data = await response.json();
+        renderCards(data[sectionKey]);
+    } catch (error) {
+        console.error("Content load error", error);
+    }
+}
+
+// 4. دوال العرض (Renderers)
+function renderCards(data) {
+    const container = document.getElementById('data-container');
+    if (!container || !data) return;
+    container.innerHTML = data.map(item => `
+        <div class="card">
+            <h3>${item.title || item.name}</h3>
+            <p>${item.desc || item.details}</p>
+            <small style="color:var(--primary)">المصدر: ${item.source || 'غير محدد'}</small>
         </div>
     `).join('');
 }
 
-// 4. نظام المسبحة
-function handleMisbaha(action) {
-    const display = document.getElementById('misbaha-count');
-    if (action === 'count') state.misbahaCount++;
-    if (action === 'reset') state.misbahaCount = 0;
-    
-    display.innerText = state.misbahaCount;
-    localStorage.setItem('misbaha', state.misbahaCount);
+function renderTimeline(data) {
+    const container = document.getElementById('data-container');
+    if (!container || !data) return;
+    container.innerHTML = data.map(item => `
+        <div class="card">
+            <div class="timeline-date">${item.date}</div>
+            <h3>${item.title}</h3>
+            <p>${item.desc}</p>
+        </div>
+    `).join('');
 }
 
-// 5. تبديل الثيم
-document.getElementById('theme-toggle').addEventListener('click', () => {
-    const newTheme = document.body.classList.contains('dark-theme') ? 'light-theme' : 'dark-theme';
-    document.body.className = newTheme;
-    localStorage.setItem('theme', newTheme);
-    document.getElementById('theme-toggle').innerText = newTheme === 'dark-theme' ? '🌙' : '☀️';
-});
+function renderArticles(data) {
+    const container = document.getElementById('data-container');
+    if (!container || !data) return;
+    container.innerHTML = data.map(item => `
+        <div class="card" style="margin-bottom:2rem">
+            <h3>${item.title}</h3>
+            <small>الكاتب: ${item.author}</small>
+            <hr style="border-color:var(--border); margin:10px 0;">
+            <p>${item.body}</p>
+        </div>
+    `).join('');
+}
 
-// التشغيل الأولي
+// 5. نظام المسبحة
+function initMisbaha() {
+    const countDisplay = document.getElementById('tasbeeh-count');
+    if (!countDisplay) return;
+    
+    let currentCount = parseInt(localStorage.getItem('tasbeeh')) || 0;
+    countDisplay.innerText = currentCount;
+
+    window.tasbeehCounter = function(action) {
+        if (action === 'add') currentCount++;
+        if (action === 'reset') currentCount = 0;
+        countDisplay.innerText = currentCount;
+        localStorage.setItem('tasbeeh', currentCount);
+    };
+}
+
+// التهيئة عند فتح الموقع
 window.onload = () => {
-    document.body.className = state.theme;
-    navigateTo('home');
+    const savedTheme = localStorage.getItem('theme') || 'dark-mode';
+    document.body.className = savedTheme;
+    document.getElementById('theme-btn').innerText = savedTheme === 'dark-mode' ? '☀️' : '🌙';
+    loadPage('home');
 };
