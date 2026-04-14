@@ -1,27 +1,26 @@
-<div class="page-header">
-    <div class="basmala">﷽ بسم الله الرحمن الرحيم</div>
-    <h2>مرحباً بكم في شبكة المنتظر</h2>
-    <p style="color: var(--text-muted);">منصة معرفية مخصصة للأبحاث والدراسات الإسلامية التاريخية</p>
-    <img src="https://images.unsplash.com/photo-1584286595398-a59f21d313f5?auto=format&fit=crop&w=800&q=80" alt="صورة الرئيسية" loading="lazy">
+<section class="page-header">
+    <h2 style="text-align:center; color:var(--secondary)">﷽</h2>
+    <h3 style="text-align:center">مرحباً بك في شبكة المنتظر المعرفية</h3>
+</section>
+
+<div class="sections-grid">
+    <button class="btn-main" onclick="navigateTo('section', 'mazalim')">مظالم أهل البيت</button>
+    <button class="btn-main" onclick="navigateTo('section', 'aqida')">العقائد والمناظرات</button>
+    <button class="btn-main" onclick="navigateTo('section', 'sahaba')">الصالحين</button>
+    <button class="btn-main" onclick="navigateTo('section', 'fadail')">فضائل أهل البيت</button>
+    <button class="btn-main" onclick="navigateTo('section', 'shubuhat')">شبهات وردود</button>
+    <button class="btn-main" onclick="navigateTo('section', 'from_books')">عقيدتنا من كتبهم</button>
+    <button class="btn-main" onclick="navigateTo('section', 'weak_hadith')">روايات ضعيفة</button>
+    <button class="btn-main" onclick="navigateTo('section', 'opponents')">المخالفون الملعونون</button>
 </div>
 
-<div class="grid">
-    <a href="#sahaba" style="text-decoration: none; color: inherit;">
-        <div class="card" style="text-align: center;">
-            <h3 style="font-size: 1.5rem;">الصحابة العدول</h3>
-            <p>تراجم وسير وصفحات من حياة الصحابة ومواقفهم.</p>
-        </div>
-    </a>
-    <a href="#mazalim" style="text-decoration: none; color: inherit;">
-        <div class="card" style="text-align: center;">
-            <h3 style="font-size: 1.5rem;">المظالم</h3>
-            <p>تسلسل زمني للأحداث التاريخية الهامة والمفصلية.</p>
-        </div>
-    </a>
-    <a href="#research" style="text-decoration: none; color: inherit;">
-        <div class="card" style="text-align: center;">
-            <h3 style="font-size: 1.5rem;">البحوث</h3>
-            <p>مقالات ودراسات تحليلية موثقة بالمصادر.</p>
-        </div>
-    </a>
-</div>
+<section class="shia-section">
+    <h3 style="color:var(--primary)">🔸 لشيعتنا</h3>
+    <div class="shia-grid">
+        <button class="btn-sub" onclick="navigateTo('section', 'research')">بحوثي</button>
+        <button class="btn-sub" onclick="navigateTo('section', 'library')">المكتبة</button>
+        <button class="btn-sub" onclick="navigateTo('section', 'ziyarat')">الزيارات</button>
+        <button class="btn-sub" onclick="navigateTo('section', 'dua')">الأدعية</button>
+        <button class="btn-sub" onclick="navigateTo('misbaha')">المسبحة</button>
+    </div>
+</section>
