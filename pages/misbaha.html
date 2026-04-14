@@ -1,0 +1,14 @@
+<div style="text-align:center">
+    <h2>المسبحة الإلكترونية</h2>
+    <div class="misbaha-container" onclick="handleMisbaha('count')">
+        <span id="misbaha-count" class="counter-val">0</span>
+        <p>اضغط للتسبيح</p>
+    </div>
+    <button class="btn-main" onclick="handleMisbaha('reset')" style="margin-top:1rem; background: #880e4f">تصفير العداد</button>
+    <br><br>
+    <button onclick="navigateTo('home')">العودة للرئيسية</button>
+</div>
+<script>
+    // تحديث الرقم عند الدخول
+    document.getElementById('misbaha-count').innerText = localStorage.getItem('misbaha') || 0;
+</script>
