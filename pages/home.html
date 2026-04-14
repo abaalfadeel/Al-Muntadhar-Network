@@ -1,26 +1,46 @@
-<section class="page-header">
-    <h2 style="text-align:center; color:var(--secondary)">﷽</h2>
-    <h3 style="text-align:center">مرحباً بك في شبكة المنتظر المعرفية</h3>
-</section>
-
-<div class="sections-grid">
-    <button class="btn-main" onclick="navigateTo('section', 'mazalim')">مظالم أهل البيت</button>
-    <button class="btn-main" onclick="navigateTo('section', 'aqida')">العقائد والمناظرات</button>
-    <button class="btn-main" onclick="navigateTo('section', 'sahaba')">الصالحين</button>
-    <button class="btn-main" onclick="navigateTo('section', 'fadail')">فضائل أهل البيت</button>
-    <button class="btn-main" onclick="navigateTo('section', 'shubuhat')">شبهات وردود</button>
-    <button class="btn-main" onclick="navigateTo('section', 'from_books')">عقيدتنا من كتبهم</button>
-    <button class="btn-main" onclick="navigateTo('section', 'weak_hadith')">روايات ضعيفة</button>
-    <button class="btn-main" onclick="navigateTo('section', 'opponents')">المخالفون الملعونون</button>
+<div class="page-header">
+    <h2>﷽</h2>
+    <p style="color:var(--text-muted)">شبكة المنتظر المعرفية</p>
 </div>
 
-<section class="shia-section">
-    <h3 style="color:var(--primary)">🔸 لشيعتنا</h3>
-    <div class="shia-grid">
-        <button class="btn-sub" onclick="navigateTo('section', 'research')">بحوثي</button>
-        <button class="btn-sub" onclick="navigateTo('section', 'library')">المكتبة</button>
-        <button class="btn-sub" onclick="navigateTo('section', 'ziyarat')">الزيارات</button>
-        <button class="btn-sub" onclick="navigateTo('section', 'dua')">الأدعية</button>
-        <button class="btn-sub" onclick="navigateTo('misbaha')">المسبحة</button>
+<div class="grid-2col">
+    <div class="btn-category" onclick="loadPage('mazalim')">
+        <h3>مظالم أهل البيت</h3><p>سجل الظلامات الكامل</p>
     </div>
-</section>
+    <div class="btn-category" onclick="loadPage('aqeeda')">
+        <h3>العقائد والمناظرات</h3><p>رد الشبهات وإثبات الحق</p>
+    </div>
+    <div class="btn-category" onclick="loadPage('sahaba')">
+        <h3>الصالحين</h3><p>الصحابة المنتجبين</p>
+    </div>
+    <div class="btn-category" onclick="loadPage('fadhail')">
+        <h3>فضائل أهل البيت</h3><p>جميع فضائل اهل البيت عليهم السلام</p>
+    </div>
+    <div class="btn-category" onclick="loadPage('shubuhat')">
+        <h3>شبهات وردود</h3><p>تفنيد الأكاذيب</p>
+    </div>
+    <div class="btn-category" onclick="loadPage('research')">
+        <h3>عقيدتنا من كتبهم</h3><p>إلزامهم بما الزموا به أنفسهم</p>
+    </div>
+    <div class="btn-category" onclick="loadPage('daif')">
+        <h3>روايات ضعيفة</h3><p>توضيح المدسوس والضعيف</p>
+    </div>
+    <div class="btn-category" onclick="loadPage('mukhalifeen')">
+        <h3>المخالفون الملعونون</h3><p>أعداء الله ورسوله</p>
+    </div>
+</div>
+
+<div class="shia-section">
+    <h2>🔸 لشيعتنا 🔸</h2>
+    <div class="grid-3col">
+        <button class="btn-shia" onclick="loadPage('shia')">بحوثي الخاصة</button>
+        <button class="btn-shia" onclick="loadPage('shia')">مكتبة إلكترونية</button>
+        <button class="btn-shia" onclick="loadPage('shia')">الزيارات</button>
+        <button class="btn-shia" onclick="loadPage('shia')">الأدعية</button>
+        <button class="btn-shia" onclick="loadPage('shia')">الأذكار</button>
+        <button class="btn-shia" onclick="loadPage('shia')">المناجات</button>
+        <button class="btn-shia" onclick="loadPage('shia')">المسبحة الإلكترونية</button>
+        <button class="btn-shia" onclick="loadPage('shia')">الصلاة</button>
+        <button class="btn-shia" onclick="loadPage('shia')">الوضوء</button>
+    </div>
+</div>
