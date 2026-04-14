@@ -4,27 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>شبكة المنتظر</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
-<body>
-    <nav class="navbar">
-        <div class="logo">شبكة المنتظر</div>
-        <ul class="nav-links">
-            <li><a href="#home">الرئيسية</a></li>
-            <li><a href="#sahaba">الصحابة العدول</a></li>
-            <li><a href="#mazalim">المظالم</a></li>
-            <li><a href="#research">البحوث</a></li>
-        </ul>
+<body class="dark-theme"> <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo" onclick="navigateTo('home')">شبكة المنتظر</h1>
+            <div class="nav-controls">
+                <button id="theme-toggle" class="btn-icon">🌙</button>
+                <button onclick="navigateTo('dashboard')" class="btn-icon">⚙️</button>
+            </div>
+        </div>
     </nav>
 
     <main id="app">
-        <div class="loader">جاري التحميل...</div>
-    </main>
+        </main>
 
-    <footer>
-        <p>⚠️ تم جمع بعض المحتوى من مصادر عامة منها موقع kingoflinks.net مع احترام حقوق النشر</p>
-        <p>&copy; 2026 شبكة المنتظر. جميع الحقوق محفوظة.</p>
+    <footer class="main-footer">
+        <p>جميع الحقوق متاحة لكل مسلم - المصدر: kingoflinks.net</p>
     </footer>
 
     <script src="app.js"></script>
