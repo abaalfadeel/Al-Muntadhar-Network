@@ -1,11 +1,13 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// 1. قم باستيراد HashRouter بدلاً من BrowserRouter
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Mukhalifeen from './pages/Mukhalifeen';
-// Import other pages...
+// ... باقي الاستيرادات
 
 export default function App() {
   return (
-    <BrowserRouter>
+    // 2. استخدم HashRouter هنا
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<div className="text-center p-20 text-gold text-2xl">مرحباً بكم في شبكة المنتظر</div>} />
@@ -15,6 +17,6 @@ export default function App() {
           {/* <Route path="research" element={<Research />} /> */}
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
