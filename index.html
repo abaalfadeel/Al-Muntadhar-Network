@@ -4,25 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>شبكة المنتظر</title>
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="dark-theme"> <nav class="navbar">
+<body class="dark-mode">
+    <nav class="navbar">
         <div class="nav-container">
-            <h1 class="logo" onclick="navigateTo('home')">شبكة المنتظر</h1>
-            <div class="nav-controls">
-                <button id="theme-toggle" class="btn-icon">🌙</button>
-                <button onclick="navigateTo('dashboard')" class="btn-icon">⚙️</button>
+            <h1 class="logo" onclick="loadPage('home')">شبكة المنتظر</h1>
+            <div class="nav-actions">
+                <button onclick="toggleTheme()" id="theme-btn" class="icon-btn">☀️</button>
+                <button onclick="loadPage('dashboard')" class="icon-btn">⚙️</button>
             </div>
         </div>
     </nav>
 
     <main id="app">
         </main>
-
-    <footer class="main-footer">
-        <p>جميع الحقوق متاحة لكل مسلم - المصدر: kingoflinks.net</p>
-    </footer>
 
     <script src="app.js"></script>
 </body>
